@@ -1,11 +1,12 @@
 ● Selezionare tutti gli ospiti
+    SELECT * FROM `ospiti`
 
 ● Selezionare tutti gli ospiti con document type = a CI
     SELECT * FROM `ospiti` WHERE document_type='CI'
 
 ● Selezionare i paganti che abbiano un ospite id associato
     SELECT ospite_id FROM `paganti` WHERE ospite_id <>'NULL'
-    SELECT ospite_id FROM `paganti` WHERE ospite_id IS NULL'
+    SELECT ospite_id FROM `paganti` WHERE ospite_id IS NULL
 
 ● Selezionare tutte le stanze del primo piano
     SELECT * FROM `stanze` WHERE floor = 1
