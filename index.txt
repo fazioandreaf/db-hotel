@@ -19,3 +19,17 @@
 
 ● Seleziona tutte le prenotazioni precedenti a maggio 2018
     SELECT * FROM `prenotazioni` WHERE MONTH(created_at)<5 and year(created_at)<2018
+
+
+1)Come si chiamano gli ospiti che hanno fatto più di due prenotazioni
+2)Stampare tutti gli ospit per ogni prenotazione
+3)Stampare Nome,Cognone, prezzo e pagante per tutte le prenotazioni fatte a maggio 2018
+4)Fai la somma di tutti i prezzi delle prenotazioni per le stanze al primo piano
+5)Prendi i dati di fatturazione per la prenotazione con id=7
+6)Le stanze sono state tutte prenotate almeno uno volta?(visualizzare le stanza non ancora prenotate)
+7)Conta gli ospiti raggruppandoli per anno di nascita
+8)Somma i prezzi dei pagamenti raggruppandoli per status
+9)Conta quante volte è stata prenotata ogni stanza
+10)Fai una analisi per vedere se ci sono ore in cui le prenotazioni sono più frequenti
+11)Quante prenotazioni ha fatto l'ospite che ha fatto più prenotazioni?(quante, non chi!)
+
