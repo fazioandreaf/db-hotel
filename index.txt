@@ -53,11 +53,57 @@
     WHERE prenotazioni.created_at > '2018-05' AND prenotazioni.created_at < '2018-06'
 
 4)Fai la somma di tutti i prezzi delle prenotazioni per le stanze al primo piano
+    SELECT *
+    FROM pagamenti
+    JOIN prenotazioni
+    ON pagamenti.prenotazione_id =prenotazioni.id
+    JOIN stanze
+    ON prenotazioni.stanza_id=stanze.id
+    WHERE stanze.floor like 1
+
 5)Prendi i dati di fatturazione per la prenotazione con id=7
+    SELECT paganti.name, paganti.lastname, paganti.address
+    FROM paganti
+    JOIN pagamenti
+    ON paganti.id = pagamenti.pagante_id
+    JOIN prenotazioni
+    ON pagamenti.prenotazione_id = prenotazioni.id
+    WHERE prenotazioni.id = 7
+
 6)Le stanze sono state tutte prenotate almeno uno volta?(visualizzare le stanza non ancora prenotate)
+    SELECT stanze.id
+    FROM stanze
+    LEFT JOIN prenotazioni
+    ON prenotazioni.stanza_id = stanze.id
+    WHERE prenotazioni.stanza_id IS NULL
+
+
 7)Conta gli ospiti raggruppandoli per anno di nascita
+    SELECT COUNT(ospiti.id) , YEAR(ospiti.date_of_birth)
+    FROM ospiti
+    GROUP BY YEAR(ospiti.date_of_birth)
+
 8)Somma i prezzi dei pagamenti raggruppandoli per status
+    SELECT pagamenti.status,SUM(pagamenti.price)
+    FROM pagamenti
+    GROUP BY pagamenti.status
+
+
 9)Conta quante volte è stata prenotata ogni stanza
+    SELECT  prenotazioni.stanza_id,COUNT(prenotazioni.stanza_id)
+    FROM prenotazioni
+    GROUP BY prenotazioni.stanza_id
+
+
 10)Fai una analisi per vedere se ci sono ore in cui le prenotazioni sono più frequenti
+    SELECT COUNT(prenotazioni.id, HOUR(prenotazioni.created_at)
+    FROM prenotazioni
+    GROUP BY HOUR(prenotazioni.created_at)
+    ORDER BY COUNT(prenotazioni.id) DESC
+
+
+
 11)Quante prenotazioni ha fatto l'ospite che ha fatto più prenotazioni?(quante, non chi!)
+
+
 
