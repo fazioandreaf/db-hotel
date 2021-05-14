@@ -25,14 +25,33 @@
     SELECT ospiti.name, ospiti.lastname, prenotazioni_has_ospiti.ospite_id 
     FROM ospiti 
     JOIN prenotazioni_has_ospiti 
-    ON ospiti.id = prenotazioni_has_ospiti.ospite_id 
+    ON prenotazioni_has_ospiti.ospite_id==ospiti.id  
     JOIN prenotazioni 
     ON prenotazioni_has_ospiti.prenotazione_id = prenotazioni.id 
     GROUP BY prenotazioni_has_ospiti.ospite_id 
     HAVING COUNT(prenotazioni_has_ospiti.ospite_id) > 2
-    
-2)Stampare tutti gli ospit per ogni prenotazione
-3)Stampare Nome,Cognone, prezzo e pagante per tutte le prenotazioni fatte a maggio 2018
+
+2)Stampare tutti gli ospiti per ogni prenotazione
+    SELECT 
+    ospiti.name AS Nome_Ospiti, 
+    ospiti.lastname AS Cognome_Ospite 
+    FROM ospiti 
+    JOIN prenotazioni_has_ospiti 
+    ON ospiti.id = prenotazioni_has_ospiti.ospite_id 
+    JOIN prenotazioni 
+    ON prenotazioni_has_ospiti.prenotazione_id = prenotazioni.id 
+
+3)Stampare Nome,Cognome, prezzo e pagante per tutte le prenotazioni fatte a maggio 2018
+    SELECT ospiti.name,ospiti.lastname,paganti.id,pagamenti.price
+    FROM ospiti
+    JOIN paganti 
+    ON paganti.ospite_id = ospiti.id
+    JOIN pagamenti
+    ON pagamenti.pagante_id=paganti.id
+    JOIN prenotazioni
+    ON pagamenti.prenotazione_id=prenotazioni.id
+    WHERE prenotazioni.created_at > '2018-05' AND prenotazioni.created_at < '2018-06'
+
 4)Fai la somma di tutti i prezzi delle prenotazioni per le stanze al primo piano
 5)Prendi i dati di fatturazione per la prenotazione con id=7
 6)Le stanze sono state tutte prenotate almeno uno volta?(visualizzare le stanza non ancora prenotate)
