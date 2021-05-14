@@ -22,6 +22,15 @@
 
 
 1)Come si chiamano gli ospiti che hanno fatto più di due prenotazioni
+    SELECT ospiti.name, ospiti.lastname, prenotazioni_has_ospiti.ospite_id 
+    FROM ospiti 
+    JOIN prenotazioni_has_ospiti 
+    ON ospiti.id = prenotazioni_has_ospiti.ospite_id 
+    JOIN prenotazioni 
+    ON prenotazioni_has_ospiti.prenotazione_id = prenotazioni.id 
+    GROUP BY prenotazioni_has_ospiti.ospite_id 
+    HAVING COUNT(prenotazioni_has_ospiti.ospite_id) > 2
+    
 2)Stampare tutti gli ospit per ogni prenotazione
 3)Stampare Nome,Cognone, prezzo e pagante per tutte le prenotazioni fatte a maggio 2018
 4)Fai la somma di tutti i prezzi delle prenotazioni per le stanze al primo piano
